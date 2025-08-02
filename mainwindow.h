@@ -1,3 +1,4 @@
+// (C) 2025 Stardust Softworks
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

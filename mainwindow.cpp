@@ -1,3 +1,4 @@
+// (C) 2025 Stardust Softworks
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QProcess>
