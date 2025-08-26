@@ -1,31 +1,45 @@
-// (C) 2025 Stardust Softworks
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
-
+// (c) 2025 Stardust Softworks
+#pragma once
 #include <QMainWindow>
-#include <QFileDialog>
+#include <QProcess>
+#include <QVector>
+#include <QFutureWatcher>
+
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+
+class MainWindow : public QMainWindow {
     Q_OBJECT
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
 
 private slots:
-    void browseFile1();
-    void browseFile2();
-    void compileCode();
+    void addFiles();
+    void removeSelectedFiles();
+    void clearFiles();
+    void browseCompiler();
     void browseOutputPath();
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+
+    void buildProject();
+    void cleanBuild();
+
 
 private:
     Ui::MainWindow *ui;
+
+
+    QString compilerCmd() const; // resolve compiler path
+    QString targetPathWithExt(QString) const; // add .exe/.out when missing
+    QString buildDirForTarget(const QString &target) const;
+
+
+    QStringList parseLines(const QString &text) const; // split by lines, trim, drop empties
+    void appendLog(const QString &s);
+    bool runProcess(const QString &program, const QStringList &args, QString *stdoutOut = nullptr, QString *stderrOut = nullptr);
 };
-#endif // MAINWINDOW_H
