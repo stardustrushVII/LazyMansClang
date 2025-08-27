@@ -24,6 +24,7 @@ private slots:
     void clearFiles();
     void browseCompiler();
     void browseOutputPath();
+    void checkCompilerArchitecture(const QString &compilerPath);
 
 
     void buildProject();

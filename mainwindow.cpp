@@ -15,6 +15,7 @@
 #include <QRegularExpression>
 #include <QAction>
 #include <QMenuBar>
+#include <QSettings>
 
 // software plumbing (wiring)
 MainWindow::MainWindow(QWidget *parent)
@@ -22,6 +23,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle("LazyMansClang");
+
+    QSettings settings("StardustSoftworks", "LazyMansClang");
+    QString savedCompilerPath = settings.value("compilerPath").toString();
+    if (!savedCompilerPath.isEmpty()) {
+        ui->compilerPathInput->setText(savedCompilerPath);
+    }
+    else {
+#ifdef Q_OS_WIN
+        ui->compilerPathInput->setText("clang++.exe");
+#else
+        ui->compilerPathInput->setText("/usr/bin/clang++");
+#endif
+    }
 
     auto* aboutAct = new QAction(tr("About %1").arg(QCoreApplication::applicationName()), this);
     aboutAct->setMenuRole(QAction::AboutRole);         // macOS app menu
@@ -113,17 +127,50 @@ void MainWindow::addFiles() {
 void MainWindow::removeSelectedFiles() { qDeleteAll(ui->fileList->selectedItems()); }
 void MainWindow::clearFiles() { ui->fileList->clear(); }
 
+
 void MainWindow::browseCompiler() {
-    QString f = QFileDialog::getOpenFileName(
-        this, "Select C++ Compiler", QString(),
+    QString f = QFileDialog::getOpenFileName(this, "Select C++ Compiler", QString(),
 #ifdef Q_OS_WIN
-        "Executables (*.exe);;All Files (*)"
+                                             "Executables (*.exe);;All Files (*)"
 #else
-        "All Files (*)"
+                                             "All Files (*)"
 #endif
-        );
-    if (!f.isEmpty()) ui->compilerPathInput->setText(f);
+                                             );
+    if (!f.isEmpty()) {
+        ui->compilerPathInput->setText(f);
+
+        // Save selection for next time
+        QSettings settings("StardustSoftworks", "LazyMansClang");
+        settings.setValue("compilerPath", f);
+        checkCompilerArchitecture(f);
+    }
 }
+
+void MainWindow::checkCompilerArchitecture(const QString &compilerPath) {
+#ifdef Q_OS_WIN
+    QString arch = qEnvironmentVariable("PROCESSOR_ARCHITECTURE");
+
+    bool isARM = arch.contains("ARM64", Qt::CaseInsensitive);
+    bool isAMD = arch.contains("AMD64", Qt::CaseInsensitive);
+
+    bool compilerARM = compilerPath.contains("aarch64", Qt::CaseInsensitive) ||
+                       compilerPath.contains("arm64", Qt::CaseInsensitive);
+    bool compilerAMD = compilerPath.contains("x86_64", Qt::CaseInsensitive) ||
+                       compilerPath.contains("amd64", Qt::CaseInsensitive);
+
+    if (isAMD && compilerARM) {
+        QMessageBox::warning(this, "Architecture Mismatch!!",
+                             "⚠️ Your CPU is x86_64 but you selected an ARM64 compiler.\n"
+                             "The build will likely fail or produce unusable binaries.");
+    }
+    else if (isARM && compilerAMD) {
+        QMessageBox::warning(this, "Architecture Mismatch",
+                             "⚠️ Your CPU is ARM64 but you selected an x86_64 compiler.\n"
+                             "The build may not run natively.");
+    }
+#endif
+}
+
 
 void MainWindow::browseOutputPath() {
     QString f = QFileDialog::getSaveFileName(
