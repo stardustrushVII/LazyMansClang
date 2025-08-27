@@ -4,9 +4,13 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QCoreApplication>
 
 int main(int argc, char *argv[])
 {
+    QCoreApplication::setOrganizationName("StardustSoftworks");
+    QCoreApplication::setApplicationName("LazyMansClang");
+
     QApplication a(argc, argv);
 
     QTranslator translator;
