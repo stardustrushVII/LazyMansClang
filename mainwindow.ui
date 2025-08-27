@@ -7,318 +7,333 @@
     <x>0</x>
     <y>0</y>
     <width>980</width>
-    <height>720</height>
+    <height>1116</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LazyMansClang — GUI Makefile</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>10</number>
+   <widget class="QGroupBox" name="groupFiles">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>960</width>
+      <height>156</height>
+     </rect>
     </property>
-    <property name="margin">
-     <number>10</number>
+    <property name="title">
+     <string>Files</string>
     </property>
-
-    <!-- Files Group -->
-    <item>
-     <widget class="QGroupBox" name="groupFiles">
-      <property name="title">
-       <string>Files</string>
-      </property>
-      <layout class="QHBoxLayout" name="filesLayout">
+    <layout class="QHBoxLayout" name="filesLayout">
+     <item>
+      <widget class="QListWidget" name="fileList">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="filesButtonsLayout">
        <item>
-        <widget class="QListWidget" name="fileList">
-         <property name="selectionMode">
-          <enum>QAbstractItemView::ExtendedSelection</enum>
+        <widget class="QPushButton" name="addFilesButton">
+         <property name="text">
+          <string>Add Files…</string>
          </property>
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="filesButtonsLayout">
-         <item>
-          <widget class="QPushButton" name="addFilesButton">
-           <property name="text">
-            <string>Add Files…</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="removeFilesButton">
-           <property name="text">
-            <string>Remove</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="clearFilesButton">
-           <property name="text">
-            <string>Clear</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="spacerFilesButtons">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-
-    <!-- Toolchain Group -->
-    <item>
-     <widget class="QGroupBox" name="groupToolchain">
-      <property name="title">
-       <string>Toolchain</string>
-      </property>
-      <layout class="QGridLayout" name="toolchainLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelCompiler">
+        <widget class="QPushButton" name="removeFilesButton">
          <property name="text">
-          <string>Compiler</string>
+          <string>Remove</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="compilerPathInput">
-         <property name="placeholderText">
-          <string>clang++ / g++</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="browseCompilerButton">
+       <item>
+        <widget class="QPushButton" name="clearFilesButton">
          <property name="text">
-          <string>Find Compiler…</string>
+          <string>Clear</string>
          </property>
         </widget>
        </item>
-
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelStd">
-         <property name="text">
-          <string>C++ Standard</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="stdCombo">
-         <item><property name="text"><string>Default</string></property></item>
-         <item><property name="text"><string>c++11</string></property></item>
-         <item><property name="text"><string>c++14</string></property></item>
-         <item><property name="text"><string>c++17</string></property></item>
-         <item><property name="text"><string>c++20</string></property></item>
-         <item><property name="text"><string>c++23</string></property></item>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <layout class="QHBoxLayout" name="jobsLayout">
-         <item>
-          <widget class="QLabel" name="labelJobs">
-           <property name="text">
-            <string>Jobs</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="jobsSpin">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>64</number>
-           </property>
-           <property name="value">
-            <number>1</number>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </widget>
-    </item>
-
-    <!-- Flags Group -->
-    <item>
-     <widget class="QGroupBox" name="groupFlags">
-      <property name="title">
-       <string>Flags</string>
-      </property>
-      <layout class="QGridLayout" name="flagsLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelCxxFlags">
-         <property name="text">
-          <string>CXXFLAGS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QPlainTextEdit" name="cxxFlagsEdit">
-         <property name="placeholderText">
-          <string>-O2 -Wall</string>
-         </property>
-        </widget>
-       </item>
-
-       <item row="1" column="0">
-        <widget class="QLabel" name="labelIncludeDirs">
-         <property name="text">
-          <string>Include Dirs (-I)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QPlainTextEdit" name="includeDirsEdit">
-         <property name="placeholderText">
-          <string>One per line. Either “-Ipath” or “path”.</string>
-         </property>
-        </widget>
-       </item>
-
-       <item row="2" column="0">
-        <widget class="QLabel" name="labelDefines">
-         <property name="text">
-          <string>Defines (-D)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QPlainTextEdit" name="definesEdit">
-         <property name="placeholderText">
-          <string>One per line. E.g. NDEBUG or FOO=1</string>
-         </property>
-        </widget>
-       </item>
-
-       <item row="3" column="0">
-        <widget class="QLabel" name="labelLdflags">
-         <property name="text">
-          <string>LDFLAGS</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QPlainTextEdit" name="ldFlagsEdit">
-         <property name="placeholderText">
-          <string>e.g. -Wl,-rpath,/usr/local/lib</string>
-         </property>
-        </widget>
-       </item>
-
-       <item row="4" column="0">
-        <widget class="QLabel" name="labelLibs">
-         <property name="text">
-          <string>Libraries (-L / -l)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QPlainTextEdit" name="libsEdit">
-         <property name="placeholderText">
-          <string>One per line: -Lpath or -lfoo</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-
-    <!-- Output / Build Group -->
-    <item>
-     <widget class="QGroupBox" name="groupOutput">
-      <property name="title">
-       <string>Output</string>
-      </property>
-      <layout class="QGridLayout" name="outputLayout">
-       <item row="0" column="0">
-        <widget class="QLabel" name="labelOutputPath">
-         <property name="text">
-          <string>Target Path</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="outputPathInput">
-         <property name="placeholderText">
-          <string>/path/to/app</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="browseOutputPath">
-         <property name="text">
-          <string>Browse…</string>
-         </property>
-        </widget>
-       </item>
-
-       <item row="1" column="0">
-        <spacer name="spacerOutput">
+       <item>
+        <spacer name="spacerFilesButtons">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>40</width>
-           <height>20</height>
+           <width>20</width>
+           <height>40</height>
           </size>
          </property>
         </spacer>
        </item>
-       <item row="1" column="1">
-        <layout class="QHBoxLayout" name="buildButtonsLayout">
-         <item>
-          <widget class="QPushButton" name="buildButton">
-           <property name="text">
-            <string>Build</string>
-           </property>
-           <property name="minimumWidth">
-            <number>120</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="cleanButton">
-           <property name="text">
-            <string>Clean</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupToolchain">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>155</y>
+      <width>951</width>
+      <height>110</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Toolchain</string>
+    </property>
+    <layout class="QGridLayout" name="toolchainLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelCompiler">
+       <property name="text">
+        <string>Compiler</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="compilerPathInput">
+       <property name="placeholderText">
+        <string>clang++ / g++</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="browseCompilerButton">
+       <property name="text">
+        <string>Find Compiler…</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelStd">
+       <property name="text">
+        <string>C++ Standard</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="stdCombo">
+       <item>
+        <property name="text">
+         <string>c++11</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>c++14</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>c++17</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>c++20</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>c++23</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <layout class="QHBoxLayout" name="jobsLayout"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupFlags">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>264</y>
+      <width>960</width>
+      <height>444</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Flags</string>
+    </property>
+    <layout class="QGridLayout" name="flagsLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelCxxFlags">
+       <property name="text">
+        <string>CXXFLAGS</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPlainTextEdit" name="cxxFlagsEdit">
+       <property name="placeholderText">
+        <string>-O2 -Wall</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelIncludeDirs">
+       <property name="text">
+        <string>Include Dirs (-I)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPlainTextEdit" name="includeDirsEdit">
+       <property name="placeholderText">
+        <string>One per line. Either “-Ipath” or “path”.</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelDefines">
+       <property name="text">
+        <string>Defines (-D)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPlainTextEdit" name="definesEdit">
+       <property name="placeholderText">
+        <string>One per line. E.g. NDEBUG or FOO=1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelLdflags">
+       <property name="text">
+        <string>LDFLAGS</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPlainTextEdit" name="ldFlagsEdit">
+       <property name="placeholderText">
+        <string>e.g. -Wl,-rpath,/usr/local/lib</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelLibs">
+       <property name="text">
+        <string>Libraries (-L / -l)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPlainTextEdit" name="libsEdit">
+       <property name="placeholderText">
+        <string>One per line: -Lpath or -lfoo</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupOutput">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>707</y>
+      <width>961</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Output</string>
+    </property>
+    <layout class="QGridLayout" name="outputLayout">
+     <item row="1" column="1">
+      <layout class="QHBoxLayout" name="buildButtonsLayout">
+       <item>
+        <widget class="QPushButton" name="buildButton">
+         <property name="text">
+          <string>Build</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="cleanButton">
+         <property name="text">
+          <string>Clean</string>
+         </property>
+        </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-
-    <!-- Console Output -->
-    <item>
-     <widget class="QPlainTextEdit" name="outputBox">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Build output will appear here…</string>
-      </property>
-     </widget>
-    </item>
-
-   </layout>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="outputPathInput">
+       <property name="placeholderText">
+        <string>/path/to/app</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelOutputPath">
+       <property name="text">
+        <string>Target Path</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <spacer name="spacerOutput">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="browseOutputPath">
+       <property name="text">
+        <string>Browse…</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPlainTextEdit" name="outputBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>832</y>
+      <width>960</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>71</height>
+     </size>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="placeholderText">
+     <string>Build output will appear here…</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>980</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>

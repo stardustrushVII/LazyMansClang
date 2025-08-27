@@ -13,10 +13,10 @@ public:
 
 
     void setCreditsHtml(const QString& html);
-    void setExtraBuildLine(const QString& line);       // some extra idk
+    void setExtraBuildLine(const QString& line);
 
 private:
-    QString buildInfo() const;                         // qt/compiler/aarch/build time
+    QString buildInfo() const;  // qt/compiler/aarch/build time
     void copyAllToClipboard() const;
 
     QLabel* logoLabel{};

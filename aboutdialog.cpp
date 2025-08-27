@@ -37,7 +37,7 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent)
 {
     setWindowTitle(tr("About %1").arg(QCoreApplication::applicationName()));
     setModal(true);
-    resize(680, 440);   // nice and roomy
+    resize(680, 440);
 
     auto* grid = new QGridLayout(this);
     grid->setHorizontalSpacing(16);
@@ -87,7 +87,7 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent)
     connect(closeBtn, &QPushButton::clicked, this, &QDialog::accept);
     connect(copyBtn,  &QPushButton::clicked, this, [this]{ copyAllToClipboard(); });
 
-    // layout arr
+    // layout array
     int r = 0;
     grid->addWidget(logoLabel,     r,   0, 3, 1);
     grid->addWidget(titleLabel,    r,   1, 1, 1);
