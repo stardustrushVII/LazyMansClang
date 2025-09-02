@@ -41,15 +41,18 @@ Cross-platform support:
 
 • Custom icon & gradient background designed under Stardust Softworks.
 
-Running source directly will require Qt6.x.x from The Qt Company
+• Running source directly will require Qt6.x.x from The Qt Company
 
 LazyMansClang 2.0 is complete. If you want more features, fork it and make it yours.
 
-Special thanks to Hedge-dev for Sonic Unleashed Recompiled, which literally acted as the critical load bearing MVP that kept my unstable, dying Ryzen PC alive long enough to compile and ship the Windows Release of LazyMansClang.
+Special thanks to Hedge-dev for Sonic Unleashed Recompiled, which literally acted as the critical load-bearing MVP that kept my unstable, dying Ryzen PC alive long enough to compile and ship the Windows Release of LazyMansClang.
 [Hedge-dev's GitHub](https://github.com/hedge-dev/UnleashedRecomp)
 
 P.S Sonic Unleashed clears Sonic Colours that game stinks.
+<a href="https://stardustsoftworks.com">
+  <img src="https://static.wixstatic.com/media/beada9_d8d17b01c1154e3898a07d481f665ad0~mv2.png" alt="StardustSoftworks Logo" width="700"/>
+</a>
 
-<img src="https://static.wixstatic.com/media/beada9_d8d17b01c1154e3898a07d481f665ad0~mv2.png" alt="LMC Logo" width="750"/>
+
 
 
