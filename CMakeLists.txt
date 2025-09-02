@@ -1,7 +1,7 @@
 # (c) 2025 Stardust Softworks
 cmake_minimum_required(VERSION 3.16)
 
-project(LazyMansClang VERSION 2.0 LANGUAGES CXX)
+project(LazyMansClang VERSION 2.01 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
